@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Safari{% endblock %}
+
+{% block content %}
+
+    {% for main in mains %}
+        <center>
+            <h1>{{ main.title }}</h1>
+        </center>
+        {{ main.body }}
+
+    {% endfor %}
+
+{% endblock %}
+

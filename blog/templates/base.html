@@ -1,0 +1,48 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <link href="{% static "css/blog.css" %}" rel="stylesheet">
+</head>
+
+<body>
+    <div id="header">
+        <P class="blocktext">
+        <a href="/" class="logo">
+            NAZWA/LOGO
+        </a>
+        </P>
+    </div>
+    <div id="leftbar">
+        <p><a href="/">Główna</a></p>
+        <p><a href="/post"> Blog </a></p>
+        <p><a href="/gallery">Galeria Eventow</a></p>
+        <p><a href="/contact">Kontakt</a> </p>
+
+    </div>
+    <div id="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <div id="rightbar">
+            {% if request.user.is_authenticated %}
+                Witaj, {{ request.user|title }}
+
+                <p><img src="{% if user.child.photo  %}{{ user.child.photo.url }}{% endif %}" width="150px" ></p>
+                <p><a href="{% url "edit" %}">Edytuj profil</a></p>
+                <p><a href="{% url "gallery:add_event" %}">Dodaj galerie eventow</a></p>
+                <p><a href="{% url "add_post" %}">Dodaj wpis na blogu</a> </p>
+                <p><a href="{% url "logout" %}">Wyloguj</a></p>
+
+
+            {% else %}
+
+                <p><a href="{% url 'login' %}">Zaloguj</a> </p>
+                <p><a href="{% url 'register' %}"> Rejestracja </a></p>
+            {% endif %}
+    </div>
+</body>
+</html>

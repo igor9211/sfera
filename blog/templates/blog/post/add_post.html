@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Adding post{% endblock %}
+
+{% block content %}
+    <h1>Dodaj nowy Post</h1>
+
+    <div class="row">
+        <div class="col-6 offset-md-3">
+            <form id="pet_form" method="post" action=".">
+
+                {% csrf_token %}
+
+<!--                {% for form in post_form %}-->
+<!--                    <p>{{ form }}</p>-->
+<!--                {% endfor %}-->
+<!--                <p>Tytył postu: {{ post_form.title }}</p>-->
+<!--                Treść:-->
+<!--                <p>{{ post_form.body }}</p>-->
+<!--                Komentarze dla administratora:-->
+<!--                <p>{{ post_form.comments }}</p>-->
+
+
+                {{ post_form|crispy }}
+
+
+<!--                {{ form_set.management_form }}-->
+<!--                {% for form in form_set %}-->
+<!--                {{ form|crispy }}-->
+<!--                {% endfor %}-->
+
+                <input type="submit" name="submit" value="Zapisz" />
+            </form>
+        </div>
+    </div>
+
+
+{% endblock %}
